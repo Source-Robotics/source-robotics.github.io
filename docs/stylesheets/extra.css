@@ -1,0 +1,11 @@
+/* Source Robotics docs landing page — the same header as the product sites */
+
+.md-header__button.md-logo img {
+  height: 48px;
+  width: auto;
+}
+
+/* Product cards: a little more air between the groups */
+.md-typeset h2 {
+  margin-top: 2rem;
+}

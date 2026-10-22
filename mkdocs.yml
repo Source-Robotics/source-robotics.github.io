@@ -1,0 +1,68 @@
+site_name: Source Robotics Docs
+site_description: Documentation for the open-source robot arms, grippers and motor controllers by Source Robotics.
+# This repository is the organisation's own GitHub Pages site. Its custom domain is the domain of EVERY Source Robotics
+# documentation site: each docs repository is served at docs.source-robotics.com/<repository name>/.
+site_url: https://docs.source-robotics.com/
+repo_url: https://github.com/Source-Robotics
+repo_name: Source-Robotics
+copyright: |
+  &copy; 2026 <a href="https://source-robotics.com" target="_blank" rel="noopener">Source Robotics d.o.o.</a> ·
+  Text and images <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> ·
+  Code <a href="https://github.com/Source-Robotics/source-robotics.github.io/blob/main/LICENSE-CODE" target="_blank" rel="noopener">MIT</a>
+
+theme:
+  name: material
+  logo: assets/logo_new_2.png
+  favicon: assets/Icon2.png
+  language: en
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+  palette:                       # the same as the PAR6 docs
+    - scheme: slate
+      primary: black
+      accent: green
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - scheme: default
+      primary: black
+      accent: green
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+# One page: no search box (each product's site has its own search).
+plugins: []
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: material/web
+      link: https://source-robotics.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/Source-Robotics
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/5arcrnjak/
+    - icon: fontawesome/brands/x-twitter
+      link: https://twitter.com/SourceRobotics
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/petar-crnjak-009b43180/
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/prjUvjmGpZ
+    - icon: fontawesome/brands/patreon
+      link: https://www.patreon.com/PCrnjak
+
+nav:
+  - index.md
