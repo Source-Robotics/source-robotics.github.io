@@ -1,4 +1,5 @@
-# Builds the landing page and publishes it with GitHub Pages on every push to main.
+# Builds the landing page and publishes it with GitHub Pages on every push to main, and once a week so that
+# What's new (read from the GitHub API at build time) stays fresh.
 # In the repository's Settings > Pages, the source must be "GitHub Actions" and the custom domain
 # docs.source-robotics.com (with this source no CNAME file is needed).
 name: pages
@@ -6,6 +7,8 @@ name: pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"     # Mondays: What's new is read from GitHub at build time
   workflow_dispatch:
 
 permissions:
@@ -28,6 +31,8 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: mkdocs build --strict
+        env:
+          GITHUB_TOKEN: ${{ github.token }}   # the What's new hook's API calls, above the anonymous rate limit
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

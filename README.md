@@ -1,7 +1,20 @@
 # Source Robotics documentation
 
-The landing page of [docs.source-robotics.com](https://docs.source-robotics.com/): one card per product, each
-linking to that product's own documentation site.
+The landing page of [docs.source-robotics.com](https://docs.source-robotics.com/): one card per product with its photo,
+each linking to that product's own documentation site, the latest releases of the products, and the links for help.
+
+## What's new is generated
+
+`hooks/whats_new.py` replaces the markers in `docs/index.md` at build time: `<!-- releases -->` with the latest
+releases of the product repositories and `<!-- updated: <docs repository> -->` with the date of that site's last
+commit, both read from the GitHub API. Offline or rate limited, the markers render empty. The workflow passes
+`GITHUB_TOKEN` for the API and rebuilds the page every Monday, so the list stays fresh without a push.
+
+## Comments of every docs site live here
+
+Every page of every documentation site has a comments box (Giscus) whose threads are this repository's
+**Discussions**, category **Documentation**, one thread per page, created when the first reader comments. Keep
+Discussions enabled and the category in place; the IDs are in each site's `mkdocs.yml` under `extra.comments`.
 
 ## How the domain works
 

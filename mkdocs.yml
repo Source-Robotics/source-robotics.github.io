@@ -37,6 +37,10 @@ theme:
 # One page: no search box (each product's site has its own search).
 plugins: []
 
+# What's new: the latest releases and the date each docs site was updated, from the GitHub API at build time.
+hooks:
+  - hooks/whats_new.py
+
 markdown_extensions:
   - attr_list
   - md_in_html
