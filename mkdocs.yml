@@ -15,9 +15,7 @@ theme:
   logo: assets/logo_new_2.png
   favicon: assets/Icon2.png
   language: en
-  font:
-    text: Roboto
-    code: Roboto Mono
+  font: false                  # Roboto is served from the site: docs/stylesheets/fonts.css
   icon:
     repo: fontawesome/brands/github
   palette:                       # the same as the PAR6 docs
@@ -49,6 +47,7 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
+  - stylesheets/fonts.css                                # the self-hosted fonts
   - stylesheets/extra.css
 
 extra:
