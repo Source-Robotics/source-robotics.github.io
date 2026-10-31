@@ -85,8 +85,8 @@ versions and comments under every page. This page is the front door.
 
     ---
 
-    The compact field-oriented controller for brushless and gimbal motors, with the same firmware, commands and
-    tools as STEPFOC.
+    The compact field-oriented controller for brushless and gimbal motors: STEPFOC's sister, with similar hardware
+    and firmware and practically the same commands and tools.
 
     [:octicons-arrow-right-24: Spectral Micro documentation](https://docs.source-robotics.com/Spectral-BLDC-docs/)
 
