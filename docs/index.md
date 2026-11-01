@@ -106,8 +106,7 @@ site's header switches between the releases it documents.
 - **Comments:** every page of every site ends with a comments box. The threads live in the
   [Discussions of this repository](https://github.com/Source-Robotics/source-robotics.github.io/discussions),
   one per page, and a GitHub account is all it takes to write.
-- **Questions and discussion:** the [Source Robotics Discord](https://discord.gg/prjUvjmGpZ) and the
-  [forum](https://discourse.source-robotics.com/).
+- **Questions and discussion:** the [Source Robotics Discord](https://discord.gg/prjUvjmGpZ).
 - **A mistake in a manual:** every page has a link to edit it on GitHub or to report the problem.
 - **Hardware designs, firmware and software:** [github.com/Source-Robotics](https://github.com/Source-Robotics).
 - **For AI tools:** every page of every site is also served as Markdown, and each site publishes an index for
