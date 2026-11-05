@@ -10,11 +10,13 @@ releases of the product repositories and `<!-- updated: <docs repository> -->` w
 commit, both read from the GitHub API. Offline or rate limited, the markers render empty. The workflow passes
 `GITHUB_TOKEN` for the API and rebuilds the page every Monday, so the list stays fresh without a push.
 
-## Comments of every docs site live here
+## Comments of the docs sites
 
-Every page of every documentation site has a comments box (Giscus) whose threads are this repository's
-**Discussions**, category **Documentation**, one thread per page, created when the first reader comments. Keep
-Discussions enabled and the category in place; the IDs are in each site's `mkdocs.yml` under `extra.comments`.
+The comments box (Giscus) under every page of the documentation sites stores its threads in the
+organisation's Discussions, https://github.com/orgs/Source-Robotics/discussions (source repository
+`Source-Robotics/discussions`), category **Manual comments**, one thread per page. Until 2026-11-04 they
+lived in this repository's Discussions, which are now off. The IDs are in each site's `mkdocs.yml` under
+`extra.comments`.
 
 ## How the domain works
 
