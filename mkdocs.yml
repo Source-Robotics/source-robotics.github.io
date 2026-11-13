@@ -18,6 +18,8 @@ theme:
   font: false                  # Roboto is served from the site: docs/stylesheets/fonts.css
   icon:
     repo: fontawesome/brands/github
+  features:
+    - navigation.tabs          # Manuals and Develop, in the header
   palette:                       # the same as the PAR6 docs
     - scheme: slate
       primary: black
@@ -38,6 +40,7 @@ plugins: []
 # What's new: the latest releases and the date each docs site was updated, from the GitHub API at build time.
 hooks:
   - hooks/whats_new.py
+  - hooks/develop.py           # the Develop page, from develop.yml
 
 markdown_extensions:
   - attr_list
@@ -49,6 +52,10 @@ markdown_extensions:
 extra_css:
   - stylesheets/fonts.css                                # the self-hosted fonts
   - stylesheets/extra.css
+  - stylesheets/develop.css                              # the Develop page
+
+extra_javascript:
+  - javascripts/develop.js                               # the Develop page's product filter
 
 extra:
   social:
@@ -70,4 +77,5 @@ extra:
       link: https://www.tiktok.com/@source.robotics
 
 nav:
-  - index.md
+  - Manuals: index.md
+  - Develop: develop.md

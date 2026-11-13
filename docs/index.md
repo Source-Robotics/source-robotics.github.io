@@ -92,6 +92,21 @@ versions and comments under every page. This page is the front door.
 
 </div>
 
+## Software and integrations
+
+<div class="grid cards" markdown>
+
+-   :material-code-braces:{ .lg .middle } **Develop**
+
+    ---
+
+    ROS 2, Python libraries, simulation models, teleoperation devices and tools for every product, with what
+    each one works with and how far along it is.
+
+    [:octicons-arrow-right-24: Software and integrations](develop.md)
+
+</div>
+
 ## What's new
 
 The latest releases of the products, from their repositories on GitHub:

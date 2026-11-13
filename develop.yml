@@ -1,0 +1,208 @@
+# The Develop page (docs/develop.md): every piece of software, integration and tool around the Source Robotics
+# products, in one list. hooks/develop.py writes it into the page; docs/javascripts/develop.js filters it by product.
+#
+# One entry per repository or tool. To add one: copy an entry, put it in the group that says what a person wants to
+# do with it, and give it
+#   name     what it is called on the page
+#   text     one or two sentences: what it does (from its README, not from memory)
+#   for      the products it works with (keys of `products` below)
+#   status   official | beta | planned | community (see `statuses` below)
+#   links    label: address, in the order to show them (Code, Docs, PyPI, App, Buy). A planned entry may have none.
+#   tested   what it was tested with, as its README says (optional)
+#   by       who made it, for a community entry (optional)
+# The build fails when an entry names a product or a status this file does not offer, or has no text.
+
+products:
+  parol6: {label: PAROL6, short: PAROL6}
+  par6: {label: PAR6, short: PAR6}
+  msg: {label: MSG gripper, short: MSG}
+  ssg48: {label: SSG-48 gripper, short: SSG-48}
+  stepfoc: {label: STEPFOC, short: STEPFOC}
+  spectral: {label: Spectral Micro, short: Spectral}
+
+statuses:
+  official: {label: Official, means: "made and maintained by Source Robotics, tested on the hardware"}
+  beta: {label: Beta, means: "ours and working, still changing"}
+  planned: {label: Planned, means: "in the works, not released yet"}
+  community: {label: Community, means: "made and maintained by its author; we link it, we do not test it"}
+
+groups:
+  - id: program
+    title: Program it
+    icon: material-code-braces
+    lead: Write programs for the arms and the grippers, from a GUI, from Python or from ROS 2.
+    items:
+      - name: PAROL6 commander software
+        text: The desktop GUI to jog, program and simulate PAROL6, with a program editor and a 3D simulator that mirrors the robot.
+        for: [parol6]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/PAROL-commander-software
+          Docs: https://docs.source-robotics.com/PAROL-docs/latest/gui/commander/
+      - name: PAROL6 Python API
+        text: "Python client and controller for PAROL6: motion commands, status streaming, kinematics and a dry-run client that needs no robot."
+        for: [parol6]
+        status: official
+        links:
+          Code: https://github.com/PCrnjak/PAROL6-python-API
+          Docs: https://docs.source-robotics.com/PAROL-docs/latest/programming/02-python-api/
+      - name: ROS 2 and MoveIt 2 for PAROL6
+        text: MoveIt 2 integration with the URDF, the launch files and a simulation demo.
+        for: [parol6]
+        status: official
+        tested: Ubuntu 22.04, ROS 2 Humble
+        links:
+          Code: https://github.com/Source-Robotics/PAROL6-ROS2-MOVEIT
+          Docs: https://docs.source-robotics.com/PAROL-docs/latest/programming/04-ros2/
+      - name: Waldo Commander
+        text: "A web interface that controls the arm from any device on the network: Python programs, a 3D simulation, teaching by demonstration."
+        for: [parol6]
+        status: community
+        by: Jepson2k
+        links:
+          Code: https://github.com/Jepson2k/Waldo-Commander
+      - name: RCB-Runtime
+        text: "The Robot Control Box runtime for PAR6: the real-time control loop, CAN motor communication, the dashboard and the Python client."
+        for: [par6]
+        status: beta
+        tested: Raspberry Pi 5, Ubuntu 24.04 with a PREEMPT_RT kernel
+        links:
+          Code: https://github.com/Source-Robotics/RCB-Runtime
+          Docs: https://docs.source-robotics.com/par6/latest/programming/
+      - name: Spectral-BLDC Python library
+        text: Python library for the motor drivers over CAN. It also drives the MSG and SSG-48 grippers.
+        for: [msg, ssg48, stepfoc, spectral]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/Spectral-BLDC-Python
+          PyPI: https://pypi.org/project/Spectral-BLDC/
+          Docs: https://docs.source-robotics.com/Spectral-BLDC-docs/latest/06-operation/can/
+      - name: MSG gripper ROS 2 driver
+        text: "ROS 2 driver over CAN: JointState topics and a GripperCommand action. It drives the SSG-48 too."
+        for: [msg, ssg48]
+        status: community
+        by: UCLA Biomechatronics Lab and Ben Forbes
+        tested: Ubuntu 22.04, ROS 2 Humble
+        links:
+          Code: https://github.com/Source-Robotics/source_robotics_msg_gripper_ros2
+          Docs: https://docs.source-robotics.com/MSG-gripper-docs/latest/06-operation/ros2/
+      - name: SSG-48 ROS 2 package
+        text: ROS 2 package that controls the SSG-48 over CAN, built on the Spectral-BLDC library.
+        for: [ssg48]
+        status: community
+        by: Lass6230
+        links:
+          Code: https://github.com/Lass6230/ssg48_adaptive_electric_gripper_ros2
+          Docs: https://docs.source-robotics.com/SSG48-gripper-docs/latest/06-operation/ros2/
+
+  - id: simulate
+    title: Simulate it
+    icon: material-cube-scan
+    lead: Models to open in a simulator, without a CAD build.
+    items:
+      - name: Robot descriptions
+        text: URDF and MuJoCo models of the arms and the grippers, with meshes, collision geometry and mass properties. Each arm comes with a choice of end effector.
+        for: [parol6, par6, msg, ssg48]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/robot_descriptions
+          Guides: https://github.com/Source-Robotics/robot_descriptions/tree/main/guides
+
+  - id: teleoperate
+    title: Teleoperate it
+    icon: material-gamepad-variant-outline
+    lead: Drive a robot by hand, with an input device.
+    items:
+      - name: Leap Motion hand tracking
+        text: "Python package for the original Leap Motion Controller: read hand skeletons, record and replay motion, and map the hand to a simulator or to your own robot controller through adapters."
+        for: [parol6, par6]
+        status: beta
+        tested: Windows 10 and 11, Orion 3.2.1
+        links:
+          Code: https://github.com/Source-Robotics/Source-Robotics-Leap-Motion
+          PyPI: https://pypi.org/project/source-robotics-leap-motion/
+      - name: Phantom Omni haptic device
+        text: "Python library and setup guide for the 3D Systems Phantom Omni: it reads the stylus position and the buttons and sends forces back to the hand. The link to a robot is your own code."
+        for: [parol6, par6]
+        status: official
+        tested: Windows 10, OpenHaptics 3.4.0
+        links:
+          Code: https://github.com/Source-Robotics/Source-Robotics-Phantom-Omni
+      - name: RAFT teleoperation arm
+        text: A force-feedback leader arm, a scaled-down PAR6. The hardware files are public; its software is not written yet.
+        for: [parol6, par6]
+        status: planned
+        links:
+          Code: https://github.com/Source-Robotics/RAFT-teleoperation-arm
+      - name: SpaceMouse
+        text: Jogging a robot with a 3Dconnexion SpaceMouse.
+        for: [parol6, par6]
+        status: planned
+      - name: VR teleoperation
+        text: Moving a robot with the controllers of a Meta Quest headset.
+        for: [parol6, par6]
+        status: planned
+      - name: Haply
+        text: Teleoperation with a Haply haptic device.
+        for: [parol6, par6]
+        status: planned
+
+  - id: ai
+    title: Train AI on it
+    icon: material-brain
+    lead: Collect demonstrations and run learned policies.
+    items:
+      - name: LeRobot
+        text: Support for Hugging Face LeRobot.
+        for: [parol6, par6]
+        status: planned
+
+  - id: tools
+    title: Drivers and tools
+    icon: material-tools
+    lead: Set up, tune and update the motor drivers, and build on them.
+    items:
+      - name: Motor GUI
+        text: The browser app that sets up, tunes and plots a driver or a gripper, over CAN or UART. Nothing to install.
+        for: [msg, ssg48, stepfoc, spectral]
+        status: official
+        links:
+          App: https://motorgui.com/
+          Docs: https://docs.source-robotics.com/STEPFOC-docs/latest/05-setup/motor-gui/
+      - name: Source Robotics Toolbox
+        text: "Python toolbox for joints driven by the drivers: encoder ticks to joint position and speed through the gear reduction, and sector homing."
+        for: [stepfoc, spectral]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/Source-Robotics-Toolbox
+          PyPI: https://pypi.org/project/SourceRoboticsToolbox/
+          Docs: https://docs.source-robotics.com/Spectral-BLDC-docs/latest/guides/
+      - name: CAN and UART bootloader
+        text: "The field-update bootloader and its host tools: load new firmware over CAN or UART, without a programming adapter."
+        for: [stepfoc, spectral]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/stm32f103c-bootloader
+          Docs: https://docs.source-robotics.com/STEPFOC-docs/latest/07-firmware/the-bootloader/
+      - name: Arduino library for the Spectral Micro
+        text: "Sends the driver's UART commands from an Arduino board's serial port. Early stage: four commands so far."
+        for: [spectral]
+        status: beta
+        tested: Teensy 4.1
+        links:
+          Code: https://github.com/Source-Robotics/SpectralMicroArduino
+          Docs: https://docs.source-robotics.com/Spectral-BLDC-docs/latest/06-operation/uart/
+      - name: SimpleFOC on the Spectral Micro
+        text: A PlatformIO project that runs the SimpleFOC library on the driver in place of its own firmware, with two examples.
+        for: [spectral]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/Spectral-Micro-Simple-FOC
+          Docs: https://docs.source-robotics.com/Spectral-BLDC-docs/latest/guides/simplefoc/
+      - name: CANvas USB-to-CAN adapter
+        text: The open-source adapter between a PC and the CAN bus. It shows up as a serial port and speaks slcan.
+        for: [msg, ssg48, stepfoc, spectral]
+        status: official
+        links:
+          Code: https://github.com/Source-Robotics/CANvas-adapter
+          Buy: https://source-robotics.com/products/canvas-usb-to-can-adapter
