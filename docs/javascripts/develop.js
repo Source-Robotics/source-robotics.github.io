@@ -1,7 +1,7 @@
 /* The Develop page's filter: "Works with" one product. hooks/develop.py writes every entry with data-for (the
    products it works with); a button keeps the entries of its product and hides the rest, and a group left empty
-   goes with its heading and lead (they carry data-dev-head). ?for=parol6 in the address chooses a product, so a
-   product's README can link straight to its own list. Without JavaScript the page is the whole list. */
+   goes whole. A button clicked again shows everything. ?for=parol6 in the address chooses a product, so a product's
+   README can link straight to its own list. Without JavaScript the page is the whole list. */
 (function () {
   function setup() {
     var top = document.querySelector(".dev-top");
@@ -25,26 +25,13 @@
         off(en, !on);
         if (on) shown += 1;
       });
-      groups.forEach(function (g) {
-        var empty = !g.querySelector(".dev-entry:not([data-dev-off])"), id = g.dataset.group;
-        off(g, empty);
-        document.querySelectorAll('[data-dev-head="' + id + '"]').forEach(function (h) { off(h, empty); });
-        var link = document.querySelector('.md-nav--secondary a[href$="#' + id + '"]');
-        if (link && link.parentElement) link.parentElement.style.display = empty ? "none" : "";
-      });
+      groups.forEach(function (g) { off(g, !g.querySelector(".dev-entry:not([data-dev-off])")); });
       count.hidden = !key;
       count.textContent = key ? "Showing " + shown + " of " + entries.length + " for " + names[key] + "." : "";
-
-      // the address, and the links between the draft's styles, carry the choice
-      try {
+      try {                                              // the address carries the choice
         var url = new URL(window.location.href);
         if (key) url.searchParams.set("for", key); else url.searchParams.delete("for");
         window.history.replaceState(null, "", url);
-        document.querySelectorAll(".dev-draft a").forEach(function (a) {
-          var u = new URL(a.href);
-          if (key) u.searchParams.set("for", key); else u.searchParams.delete("for");
-          a.href = u.toString();
-        });
       } catch (e) { /* an old browser: the filter still works */ }
     }
 

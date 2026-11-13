@@ -2,6 +2,8 @@
 
 The landing page of [docs.source-robotics.com](https://docs.source-robotics.com/): one card per product with its photo,
 each linking to that product's own documentation site, the latest releases of the products, and the links for help.
+Its second page, [Develop](https://docs.source-robotics.com/develop/), lists the software, integrations and tools
+around the products.
 
 ## What's new is generated
 
@@ -9,6 +11,18 @@ each linking to that product's own documentation site, the latest releases of th
 releases of the product repositories and `<!-- updated: <docs repository> -->` with the date of that site's last
 commit, both read from the GitHub API. Offline or rate limited, the markers render empty. The workflow passes
 `GITHUB_TOKEN` for the API and rebuilds the page every Monday, so the list stays fresh without a push.
+
+## The Develop page is generated
+
+`docs/develop.md` is one marker, `<!-- develop -->`; its content is `develop.yml`: one entry per repository or
+tool, with a sentence, the products it works with, a status (Official, Beta, Planned, Community), an icon and its
+links, in groups named after what a person wants to do. `hooks/develop.py` writes the page from it and stops the
+build on an unknown product, status or icon. `docs/javascripts/develop.js` is the "Works with" filter:
+`/develop/?for=parol6` opens the page showing only what works with PAROL6, so a product's README can link to its
+own list.
+
+- **A new repository or tool** is a new entry in `develop.yml`; the header of the file explains the fields.
+- **A new product** is a line under `products` there, and a card in `docs/index.md`.
 
 ## Comments of the docs sites
 
@@ -28,7 +42,8 @@ also the domain of every other documentation site in the organisation. A docs re
   address.
 - **Renaming a docs repository changes its address,** and links to the old one stop working. A redirect page can be
   added here under the old name.
-- **A new product** gets a card in `docs/index.md` once its docs repository publishes.
+- **A new product** gets a card in `docs/index.md` once its docs repository publishes, and a line under `products`
+  in `develop.yml`.
 
 ## Preview it locally
 

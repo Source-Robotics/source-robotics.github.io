@@ -1,18 +1,15 @@
 ---
 hide:
   - navigation
+  - toc
 ---
 
 # Develop
 
-**Draft, the cards in three styles:** [B1, plain cards](develop.md) · [B2, cards with a cover](develop-covers.md) ·
-[B3, a panel per group](develop-rail.md)
-{ .dev-draft }
-
 Software, integrations and tools for the Source Robotics arms, grippers and motor drivers: what exists, what it
 works with and how far along it is. Choose a product to see only what works with it.
 
-<!-- develop: cards -->
+<!-- develop -->
 
 ## Add yours { #add-yours }
 
