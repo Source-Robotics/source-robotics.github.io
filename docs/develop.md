@@ -5,14 +5,14 @@ hide:
 
 # Develop
 
-**Draft, the same page in three styles:** [A, the list](develop.md) · [B, cards](develop-cards.md) ·
-[C, the support matrix](develop-matrix.md)
+**Draft, the cards in three styles:** [B1, plain cards](develop.md) · [B2, cards with a cover](develop-covers.md) ·
+[B3, a panel per group](develop-rail.md)
 { .dev-draft }
 
 Software, integrations and tools for the Source Robotics arms, grippers and motor drivers: what exists, what it
 works with and how far along it is. Choose a product to see only what works with it.
 
-<!-- develop: list -->
+<!-- develop: cards -->
 
 ## Add yours { #add-yours }
 

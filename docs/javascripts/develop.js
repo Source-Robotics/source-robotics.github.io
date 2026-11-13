@@ -1,7 +1,7 @@
 /* The Develop page's filter: "Works with" one product. hooks/develop.py writes every entry with data-for (the
-   products it works with); a button keeps the entries of its product and hides the rest, a group left empty goes
-   with its heading, and in the matrix the product's column is marked. ?for=parol6 in the address chooses a product,
-   so a product's README can link straight to its own list. Without JavaScript the page is the whole list. */
+   products it works with); a button keeps the entries of its product and hides the rest, and a group left empty
+   goes with its heading and lead (they carry data-dev-head). ?for=parol6 in the address chooses a product, so a
+   product's README can link straight to its own list. Without JavaScript the page is the whole list. */
 (function () {
   function setup() {
     var top = document.querySelector(".dev-top");
@@ -26,24 +26,16 @@
         if (on) shown += 1;
       });
       groups.forEach(function (g) {
-        var empty = !g.querySelector(".dev-entry:not([data-dev-off])");
+        var empty = !g.querySelector(".dev-entry:not([data-dev-off])"), id = g.dataset.group;
         off(g, empty);
-        // the group's lead and heading sit just before it
-        var id = "";
-        for (var n = g.previousElementSibling; n; n = n.previousElementSibling) {
-          off(n, empty);
-          if (n.tagName === "H2") { id = n.id; break; }
-        }
-        var link = id && document.querySelector('.md-nav--secondary a[href$="#' + id + '"]');
+        document.querySelectorAll('[data-dev-head="' + id + '"]').forEach(function (h) { off(h, empty); });
+        var link = document.querySelector('.md-nav--secondary a[href$="#' + id + '"]');
         if (link && link.parentElement) link.parentElement.style.display = empty ? "none" : "";
-      });
-      document.querySelectorAll(".dev-matrix .dev-col").forEach(function (c) {
-        c.classList.toggle("dev-col--on", !!key && c.dataset.col === key);
       });
       count.hidden = !key;
       count.textContent = key ? "Showing " + shown + " of " + entries.length + " for " + names[key] + "." : "";
 
-      // the address, and the links between the draft's three styles, carry the choice
+      // the address, and the links between the draft's styles, carry the choice
       try {
         var url = new URL(window.location.href);
         if (key) url.searchParams.set("for", key); else url.searchParams.delete("for");
